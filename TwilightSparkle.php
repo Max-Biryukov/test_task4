@@ -2,10 +2,10 @@
 
 
 
-
 class TwilightSparkle
 {
-    CONST MIN_NUM = 2; //Минимальное значение
+    CONST MIN_CNT_NUM = 2; //Минимальное количество элементов последовательности
+    CONST MIN_NUM = 1; //Минимальное значение элементов последовательности
     CONST MAX_NUM = 100000; //Максимальное значение
     CONST DEFAULT_VALUE = -1; //Дефолтное значение, если последовательность не поддается сортировке
 /*
@@ -25,7 +25,7 @@ class TwilightSparkle
     public function __construct()
     {
         if( empty($this->_cntElements) ){
-            $this->_cntElements = $this->_getNum();
+            $this->_cntElements = $this->_getNum( self::MIN_CNT_NUM );
         }
 
         if( !empty($this->_cntElements) && empty($this->_sequence) ){
@@ -49,9 +49,9 @@ class TwilightSparkle
      * @return int
      */
 
-    private function _getNum()
+    private function _getNum( $minNum )
     {
-        return rand( self::MIN_NUM, self::MAX_NUM );
+        return rand( $minNum, self::MAX_NUM );
     }
 
 
@@ -65,7 +65,7 @@ class TwilightSparkle
         if( !empty($this->_cntElements) ){
 
             for( $i = 0; $i < $this->_cntElements; $i++ ){
-                $this->_sequence[] = $this->_getNum();
+                $this->_sequence[] = $this->_getNum( self::MIN_NUM );
             }
             return true;
         }
@@ -77,6 +77,7 @@ class TwilightSparkle
      * Проверяем последовательность перестановками чисел
      * @return int
      */
+
 
     private function _processSequence()
     {
